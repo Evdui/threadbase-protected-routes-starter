@@ -23,17 +23,42 @@ export default function App() {
     <div className="wrap">
       <h1>Threadbase</h1>
       <NavBar />
+      
       <Routes>
-        {/* public */}
+        {/* Public routes */}
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/threads" element={<ThreadsPage />} />
 
-        {/* TODO (task 2): protect these three with <PrivateRoute> */}
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/threads/new" element={<NewThreadPage />} />
+        {/* Protected routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <DashboardPage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/threads/new"
+          element={
+            <PrivateRoute>
+              <NewThreadPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
+
     </div>
   );
 }
